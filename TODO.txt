@@ -1,0 +1,4 @@
+1. Create own stringbuilder - resizeable array of chars that is copied to string
+2. Create linked list, make basic functionality, reverse function
+3. Maybe in C++ or Python
+4. Create hashtable
