@@ -6,17 +6,20 @@ struct node{
 };
 
 class linked_list{
+
 	private:
+
 		node *head;
 		int length;
+
 	public:
+
 		linked_list(){
-			node *head = new node;
-			head -> data = 0;
-			head -> next = NULL;
+			node *head = NULL;// = new node;
 			this->head = head;
-			length = 0;
+			this->length = 0;
 		}
+
 		void insert_first(int data){
 			node *node_to_insert = new node;
 			node_to_insert->data = data;
@@ -25,6 +28,7 @@ class linked_list{
 			this->length++;
 			return;
 		}
+
 		int remove_first(){
 			node *tempNode = NULL;
 			int tempInt = -1;
@@ -32,25 +36,49 @@ class linked_list{
 				std::cout<<"List already empty."<<std::endl;
 			}else{
 				tempNode = this->head;
-				tempInt = tempNode->data;
+				tempInt = this->head->data;
 				this->head = this->head->next;
 				this->length--;
 				delete tempNode;
 			}
 			return tempInt;
 		}
+
+		void reverse_list(){
+			node *prevNode = NULL;
+			node *currentNode = this->head;
+			node *afterNode = this->head->next;
+			if (this->length <= 1){
+				return;
+			}else{//rotate pointers
+				while(currentNode != NULL){
+					currentNode->next = prevNode;
+					prevNode = currentNode;
+					currentNode = afterNode;
+					if(currentNode == NULL){
+						break;
+					}
+					afterNode = currentNode->next;
+				}
+				this->head = prevNode;
+			}
+			return;
+		}
+		
 		void print_list(){
 			node *currentNode = this->head;
-			while(currentNode->next != NULL){
+			while(currentNode != NULL){
 				std::cout<<currentNode->data<<std::endl;
 				currentNode = currentNode->next;	
 			}
 			return;
 		}
+
 		~linked_list(){
 			while(this->length > 0){
 				this->remove_first();
-			}	
+			}
+	
 			delete this->head;
 			return;
 		}
