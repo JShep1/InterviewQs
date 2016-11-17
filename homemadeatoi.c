@@ -1,6 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "homemadeatoi.h"
+int are_same(char *name1, char *name2, int name_len){
+	int i = 0;
+	
+	for(i = 0; i < name_len; i++){
+		if(*(name1+i) != *(name2+i)){
+
+			return 0;
+		}
+	}
+	
+	return 1;
+}
 
 void printString(char *string){
 	int i = 0;
